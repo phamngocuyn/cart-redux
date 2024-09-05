@@ -20,6 +20,7 @@ const ProductItem = ({ name, img, id, price }: ProductItemProps) => {
     <div className="product-item">
       <p>{name}</p>
       <img src={img} alt={name} />
+      <p>{price} VND</p>
       <button onClick={handleAddToCart}>Add to cart</button>
     </div>
   );
