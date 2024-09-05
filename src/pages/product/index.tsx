@@ -1,16 +1,19 @@
+import React from "react";
 import ProductItem from "../../components/product-item";
-// import ErrorBoundary from "../../config/ErrorBoundary";
 import "./style.css";
+import { useSearch } from "../../context/SearchContext";
 
-interface Products {
+interface Product {
   id: number;
   name: string;
   img: string;
   price: number;
 }
 
-const Products = () => {
-  const ListProduct: Products[] = [
+const Products: React.FC = () => {
+  const { searchTerm } = useSearch();
+
+  const ListProduct: Product[] = [
     {
       id: 1,
       name: "Sach giao khoa toán",
@@ -37,17 +40,20 @@ const Products = () => {
     },
   ];
 
+  const filteredProducts = ListProduct.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="product-container">
-      {ListProduct.map((item) => (
-        // <ErrorBoundary key={item.id}>
+      {filteredProducts.map((item) => (
         <ProductItem
+          key={item.id}
           id={item.id}
           name={item.name}
           img={item.img}
           price={item.price}
         />
-        // </ErrorBoundary>
       ))}
     </div>
   );

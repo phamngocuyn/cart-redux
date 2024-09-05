@@ -3,6 +3,7 @@ import "./style.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../../redux/store";
+import SearchField from "../search-field";
 
 interface CartItem {
   id: number;
@@ -24,6 +25,7 @@ const Header: React.FC = () => {
       <Link to="/" className="link-brand">
         <div className="brand">Home</div>
       </Link>
+      <SearchField />
       <Link to="/cart">
         <div className="cart-icon">
           <span className="cart-count">{totalCount}</span>
